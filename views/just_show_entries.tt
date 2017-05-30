@@ -1,0 +1,29 @@
+[% IF session.logged_in %]
+      <h3>Just Entries</h3>
+[% END %]
+<!-- <ul class=entries>
+-->
+<!-- <div id="sncontent"> 
+-->
+   <table>
+   <tbody bgcolor="#ffd"> 
+[% IF req_note.size %]
+  [% FOREACH id IN req_note.keys.nsort %]
+           <tr style="background-color:lightyellow; color:forestgreen;">
+            <td><h5>[% req_note.$id.id %] </h5></td>
+            <td><h5>[% req_note.$id.req_n_id %] </h5></td>
+            <td><h5>[% req_note.$id.req_n_parent %] </h5></td>
+            <td><h5>[% req_note.$id.req_n_tag %] </h5></td>
+            <td><h5>[% req_note.$id.req_n_progress %] </h5></td>
+            <td><h5>[% req_note.$id.req_n_statusfile %] </h5></td>
+            <td><h5>[% req_note.$id.req_n_type %] </h5></td>
+           <td><h5>[% req_note.$id.req_n_note FILTER html_line_break %] </h5></td>
+          </tr>
+  [% END %]
+   </tbody>
+   </table>
+[% ELSE %]
+  <li><em>Unbelievable.  No entries here so far!</em></li>
+[% END %]
+<!-- </ul> -->
+

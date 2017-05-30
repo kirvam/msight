@@ -1,0 +1,143 @@
+[% IF session.logged_in %]
+   <p>
+     <a class="one" href="[% formbaseaddstrategy %]" title="ADD STRATEGY to [% formbaseaddstrategy %]" style="font-size: 14;">STRATEGY</a>
+     <a>|</a>
+     <a class="one" href="[% formbaseaddinitiative %]" title="ADD INITIATIVE to [% formbaseaddstrategy %]">INITIATIVE</a>
+     <a>|</a>
+     <a class="one" href="[% formbaseaddproject %]" title="ADD PROJECT to [% formbaseaddproject %]">PROJECT</a>
+     <a>|</a>
+     <a class="one" href="[% formbaseaddtask %]" title="ADD TASK to [% formbaseaddtask %]">TASK</a>
+     <a>|</a>
+     <a class="one" href="[% formbaseaddinitiative %]" title="ADD NOTE to [% formbaseaddstrategy %]">NOTE</a>
+     <a>|</a>
+     <a class="one" href="[% formbaseaddinitiative %]" title="ADD METRIC to [% formbaseaddstrategy %]">METRIC</a>
+
+    <p>
+ <form action="[% add_entry_url %]" method=post class=add-entry>
+    <dl>
+      <dt>ID:</dt>
+        <select name=req_n_id>
+<!--          [% IF req_n_id_note.size %]
+-->
+           [% FOREACH rid IN req_n_id_note.keys.nsort %]
+             <dd>
+              <option value="[% rid.req_n_id %]">[% rid.req_n_id %]</option>
+             </dd>
+            </select>
+            [% END %]
+<!--      <dd><input type=text size=30 name=req_n_id>
+       </dd>
+-->
+      <dt>Name:</dt>
+       <dd>
+      <input type=text size=130 name=req_n_tag></dt>
+       </dd>
+      <dt>Text:</dt>
+      <dd><textarea name=req_n_note rows=5 cols=100></textarea></dd>
+      <dt>Type:</dt>
+        <select name=req_n_type>
+         <dd>
+         <option value="BLANK" size=30>--which kind--</option>
+             <option value="Strategy" size=30>Strategy</option>
+             <option value="Initative" size=30>Initiative</option>
+             <option value="Project" size=30>Project</option>
+             <option value="Task" size=30>Task</option>
+          </dd>
+        </select>
+       <p>
+      <dt>Progress:</dt>
+        <select name=req_n_progress>
+         <dd><option value="BLANK" size=30>--level of completion--</option>
+            <option value="12.5%" size=30>"12.5%"</option>
+            <option value="25%" size=30>"25%"</option>
+            <option value="37.5%" size=30>"37.5%"</option>
+            <option value="50%" size=30>"50%"</option>
+            <option value="62.5%" size=30>"62.5%"</option>
+            <option value="75%" size=30>"75%"</option>
+            <option value="87.5%" size=30>"87.5%"</option>
+            <option value="100%" size=30>"100%"</option>
+          </dd>
+         </select>
+       <p>
+      <dt>Level of Completion IMG:</dt>
+      <select name=req_n_statusfile>
+      <dl>
+        <dd><option value="BLANK" size=30>--level of completion img--</option>
+            <option value="file_pie__0_.gif" size=30>"file_pie__0_.gif"</option>
+            <option value="file_pie__1_.gif" size=30>"file_pie__1_.gif"</option>
+            <option value="file_pie__2_.gif" size=30>"file_pie__2_.gif"</option>
+            <option value="file_pie__3_.gif" size=30>"file_pie__3_.gif"</option>
+            <option value="file_pie__4_.gif" size=30>"file_pie__4_.gif"</option>
+            <option value="file_pie__5_.gif" size=30>"file_pie__5_.gif"</option>
+            <option value="file_pie__6_.gif" size=30>"file_pie__6_.gif"</option>
+            <option value="file_pie__7_.gif" size=30>"file_pie__7_.gif"</option>
+            <option value="file_pie__8_.gif" size=30>"file_pie__8_.gif"</option>
+        </dd>
+       </dl>
+      </select>
+    <p>
+    <dt><input type=submit value=Submit></dt>
+   </dl>
+ </form>
+[% END %]
+<!-- <ul class=entries>
+-->
+ <div id="sncontent"> 
+
+   <table>
+   <tbody bgcolor="#ffd"> 
+[% IF req_note.size %]
+  [% FOREACH id IN req_note.keys.nsort %]
+<!--
+-->
+        <tbody bgcolor="#ffd"> 
+       <tr class="flip"; style="background-color:lightgreen; color:black;">
+<!--
+            <td><h5>[% req_note.$id.id %] </h5></td>
+-->
+            <td><h5>[% req_note.$id.req_n_id %] </h5></td>
+            <td><h5>[% req_note.$id.req_n_tag %] </h5></td>
+            <td><h5>[% req_note.$id.req_n_type %] </h5></td>
+            <td><h5>[% req_note.$id.req_n_note FILTER html_line_break %] </h5></td>
+            <td><h5>[% req_note.$id.req_n_progress %] </h5></td>
+<!--
+-->
+       </tr>
+        </tbody>
+       <tbody class="section" style="display: none;">
+         <tr>
+          <td colspan="4">
+<!--
+-->
+            <td><h5><a href="/images/[% req_note.$id.req_n_statusfile %]">CHART</a></h5></td>
+            <td><h5><img src="/images/[% req_note.$id.req_n_statusfile %]" alt="Status" style="width:50px;height:50px;"></h5></td>
+            <td><h5>
+               <form action="[% add_entry_url %]" method=post class=add-entry>
+                 <dt>ID TAG:</dt>
+                 <select name=req_n_tag>
+[% FOREACH iid IN req_note.keys.nsort %]
+                  <dd><option value="[% req_note.$iid.req_n_type %]" size=30>[% req_note.$iid.req_n_type %]</option></dd>
+[% END %]
+                  </select>
+               </form>
+               </h5>
+              </td>
+            </tr>
+  [% END %]
+            </tbody>
+   </table>
+</div>
+<script>
+$('.flip').click(function() {
+    $(this)
+        .closest('tbody')
+        .next('.section')
+        .toggle('fast');
+});
+</script>
+
+[% ELSE %]
+  <li><em>Unbelievable.  No entries here so far!</em></li>
+[% END %]
+<!-- </ul> -->
+

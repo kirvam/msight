@@ -1,0 +1,27 @@
+#Notes:
+#
+MariaDB [nfr_m1]> describe req_note;
++------------------+---------------+------+-----+---------+----------------+
+| Field            | Type          | Null | Key | Default | Extra          |
++------------------+---------------+------+-----+---------+----------------+
+| id               | mediumint(9)  | NO   | PRI | NULL    | auto_increment |
+| req_n_id         | varchar(20)   | NO   |     | NULL    |                |
+| req_n_parent     | varchar(200)  | YES  |     | NULL    |                |
+| req_n_tag        | varchar(70)   | YES  |     | NULL    |                |
+| req_n_type       | varchar(30)   | NO   |     | NULL    |                |
+| req_n_progress   | varchar(5)    | NO   |     | NULL    |                |
+| req_n_statusfile | varchar(45)   | NO   |     | NULL    |                |
+| req_n_note       | varchar(3000) | YES  |     | NULL    |                |
++------------------+---------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+MariaDB [nfr_m1]> describe req_type;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | mediumint(9) | NO   | PRI | NULL    | auto_increment |
+| req_t_tag  | varchar(20)  | NO   |     | NULL    |                |
+| req_t_type | varchar(30)  | NO   |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+

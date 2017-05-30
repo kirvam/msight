@@ -1,0 +1,20 @@
+[% IF session.logged_in %]
+  <form action="[% add_entry_url %]" method=post class=add-entry>
+    <dl>
+      <dt>Title:
+      <dd><input type=text size=30 name=req_n_id>
+      <dt>Text:
+      <dd><textarea name=req_n_note rows=5 cols=40></textarea>
+      <dd><input type=submit value=Share>
+    </dl>
+  </form>
+[% END %]
+<ul class=entries>
+[% IF req_note.size %]
+  [% FOREACH id IN req_note.keys.nsort %]
+    <li><h2>[% req_note.$id.req_n_id %]</h2>[% req_note.$id.req_n_note %]
+  [% END %]
+[% ELSE %]
+  <li><em>Unbelievable.  No entries here so far!</em>
+[% END %]
+</ul>
